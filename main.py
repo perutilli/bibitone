@@ -1,38 +1,32 @@
-import tkinter as tk
-from MainPage import *
+from Liquid import *
+from Drink import *
+import json
+from types import SimpleNamespace
 
-root = tk.Tk()
-
-app = MainPage(master=root)
-app.mainloop()
-
-
-# window = tk.Tk()
-
-# btn_shots = tk.Button(
-#     text="SHOTS",
-#     height=10,
-#     master=window
-# )
-
-# btn_drinks = tk.Button(
-#     text="DRINKS",
-#     height=10,
-#     master=window
-# )
+liquids = []
+drinks = []
 
 
-# def handle_btn_shots(event):
-#     pass
+def decode_liquid(dict):
+    return Liquid(dict["name"], dict["position"])
 
 
-# def handle_btn_drinks(event):
-#     pass
+def decode_drink(dict):
+    quantities = {}
+    for liq in dict["liquids"]:
+        liq_name = liq["name"]
+        for l in liquids:
+            if (l.name == liq_name):
+                quantities[l] = liq["portion"]
+                break
+    return Drink(dict["name"], quantities)
 
 
-# btn_shots.bind("<Button-1>", handle_btn_shots)
-# btn_drinks.bind("<Button-1>", handle_btn_drinks)
+with open("liquids.json") as data_file:
+    data = data_file.read()
+    liquids = json.loads(data, object_hook=decode_liquid)
 
-# btn_shots.pack(fill=tk.X)
-# btn_drinks.pack(fill=tk.X)
-# window.mainloop()
+with open("drinks.json") as data_file:
+    #data = data_file.read()
+    for drink in json.load(data_file):
+        drinks.append(decode_drink(drink))

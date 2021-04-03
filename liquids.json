@@ -1,0 +1,34 @@
+[
+    {
+        "name" : "vodka",
+        "position" : [1]
+    },
+    {
+        "name" : "gin",
+        "position" : [2]
+    },
+    {
+        "name" : "tequila",
+        "position" : [3]
+    },
+    {
+        "name" : "rum",
+        "position" : [4]
+    },
+    {
+        "name" : "lemon",
+        "position" : [5]
+    },
+    {
+        "name" : "coca cola",
+        "position" : [6]
+    },
+    {
+        "name" : "ace",
+        "position" : [7, 8]
+    },
+    {
+        "name" : "tea plus",
+        "position" : [9]
+    }
+]

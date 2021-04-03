@@ -2,7 +2,6 @@ import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
-from kivy.properties import NumericProperty
 
 Builder.load_file('layouts.kv')
 
@@ -22,7 +21,6 @@ class DrinksPage(Screen):
 
 
 class MyApp(App):
-    n_cols = NumericProperty(2)
 
     def build(self):
         sm = ScreenManager()

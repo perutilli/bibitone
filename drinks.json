@@ -1,0 +1,36 @@
+[
+    {
+        "name" : "Bibitone",
+        "liquids" : [
+            {
+                "name" : "vodka",
+                "portion" : 0.3
+            },
+            {
+                "name" : "ace",
+                "portion" : 0.7
+            }
+        ]
+    },
+    {
+        "name" : "Long Island",
+        "liquids" : [
+            {
+                "name" : "vodka",
+                "portion" : 0.2
+            },
+            {
+                "name" : "rum",
+                "portion" : 0.2
+            },
+            {
+                "name" : "gin",
+                "portion" : 0.2
+            },
+            {
+                "name" : "lemon",
+                "portion" : 0.4
+            }
+        ]
+    }
+]
