@@ -1,0 +1,39 @@
+<MainPage>
+
+    btn_shots:btn_shots
+    btn_drinks:btn_drinks
+
+
+    GridLayout:
+        cols:1
+        size:root.width, root.height
+        Label:
+            text:"Name"
+            size_hint_y:None
+            height:80
+        GridLayout:
+            cols:2
+            Button:
+                id:btn_shots
+                text:"SHOTS"
+                font_size:32
+                on_press: root.manager.current = 'shots_page'
+            Button:
+                id:btn_drinks
+                text:"DRINKS"
+                font_size:32
+                on_press: root.manager.current = 'drinks_page'
+
+<ShotsPage>
+    GridLayout:
+        cols:app.n_cols
+        Label:
+            text:"Shots"
+        Label:
+            text:"Shots"
+        Label:
+            text:"Shots"
+
+<DrinksPage>
+    Label:
+        text:"Drinks"
