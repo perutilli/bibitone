@@ -5,7 +5,16 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 
+import threading
+import time
+
 Builder.load_file('layouts.kv')
+
+
+def dispense_liquid():
+    print("Opened pump")
+    time.sleep(2)
+    print("Closed pump")
 
 
 class ButtonWithId(Button):
@@ -35,7 +44,10 @@ class ShotsPage(Screen):
         self.add_widget(self.layout)
 
     def click(self, instance):
-        print(self.shots[instance.id])
+        thread = threading.Thread(
+            target=dispense_liquid, args=())
+        thread.start()
+        thread.join()
 
 
 class DrinksPage(Screen):

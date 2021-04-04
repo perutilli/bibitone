@@ -9,6 +9,9 @@ from kivy.uix.screenmanager import ScreenManager
 # python lib
 import json
 
+liquids_file = "data/liquids.json"
+drinks_file = "data/drinks.json"
+
 liquids = []
 drinks = []
 
@@ -28,12 +31,11 @@ def decode_drink(dict):
     return Drink(dict["name"], quantities)
 
 
-with open("liquids.json") as data_file:
+with open(liquids_file) as data_file:
     data = data_file.read()
     liquids = json.loads(data, object_hook=decode_liquid)
 
-with open("drinks.json") as data_file:
-    #data = data_file.read()
+with open(drinks_file) as data_file:
     for drink in json.load(data_file):
         drinks.append(decode_drink(drink))
 
