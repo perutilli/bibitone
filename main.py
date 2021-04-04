@@ -1,11 +1,12 @@
 # my classes
 from Liquid import *
 from Drink import *
-from Pages import MainPage, ShotsPage, DrinksPage, ProgressPage
+from Pages import MainPage, ShotsPage, DrinksPage  # , ProgressPage
 # kivy imports
 import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
+from kivy.core.window import Window
 # python lib
 import json
 
@@ -43,11 +44,12 @@ with open(drinks_file) as data_file:
 class BibitoneApp(App):
 
     def build(self):
+        Window.clearcolor = (1, 1, 1, 1)
         sm = ScreenManager()
         sm.add_widget(MainPage(name='main_page'))
         sm.add_widget(ShotsPage(liquids, name='shots_page'))
         sm.add_widget(DrinksPage(drinks, name='drinks_page'))
-        sm.add_widget(ProgressPage(name='progress_page'))
+        # sm.add_widget(ProgressPage(name='progress_page'))
 
         return sm
 

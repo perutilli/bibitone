@@ -1,9 +1,7 @@
+<Label>
+    color:(0,0,0,1)
+
 <MainPage>
-
-    btn_shots:btn_shots
-    btn_drinks:btn_drinks
-
-
     GridLayout:
         cols:2
         Button:
@@ -16,3 +14,42 @@
             text:"DRINKS"
             font_size:32
             on_press: root.manager.current = 'drinks_page'
+
+<ShotsPage>
+    BoxLayout:
+        id: shots_page_layout
+        orientation: "vertical"
+        BoxLayout:
+            id: shots_top_bar
+            size_hint_y: 0.14
+            orientation: "horizontal"
+            Button:
+                text: "back"
+                size_hint_x: 0.1
+                on_press: root.back()
+            Label:
+                id: shots_title
+                text: "SHOTS"
+            Label:
+                text:""
+                size_hint_x: 0.1
+
+<DrinksPage>
+    BoxLayout:
+        id: drinks_page_layout
+        orientation: "vertical"
+        BoxLayout:
+            id: drinks_top_bar
+            size_hint_y: 0.14
+            orientation: "horizontal"
+            Button:
+                text: "back"
+                size_hint_x: 0.1
+                on_press: root.back()
+            Label:
+                id: drinks_title
+                text: "DRINKS"
+            Label:
+                text:""
+                size_hint_x: 0.1
+            
