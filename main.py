@@ -1,11 +1,13 @@
+# my classes
 from Liquid import *
 from Drink import *
+from Pages import MainPage, ShotsPage, DrinksPage
+# kivy imports
 import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
-from Pages import MainPage, ShotsPage, DrinksPage
+# python lib
 import json
-from types import SimpleNamespace
 
 liquids = []
 drinks = []

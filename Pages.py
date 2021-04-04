@@ -23,13 +23,19 @@ class MainPage(Screen):
 class ShotsPage(Screen):
     def __init__(self, shots_list, **kwargs):
         super(ShotsPage, self).__init__(**kwargs)
+        self.shots = shots_list
         self.layout = GridLayout()
         # needs to be dynamically set based on len(shots_list)
         self.layout.cols = 3
-        for shot in shots_list:
-            self.layout.add_widget(Button(text=shot.name))
+        for i, shot in enumerate(self.shots):
+            b = ButtonWithId(text=shot.name, id=i)
+            b.bind(on_press=self.click)
+            self.layout.add_widget(b)
 
         self.add_widget(self.layout)
+
+    def click(self, instance):
+        print(self.shots[instance.id])
 
 
 class DrinksPage(Screen):
@@ -39,7 +45,7 @@ class DrinksPage(Screen):
         self.layout = GridLayout()
         # needs to be dynamically set based on len(drinks_list)
         self.layout.cols = 3
-        for i, drink in enumerate(drinks_list):
+        for i, drink in enumerate(self.drinks):
             b = ButtonWithId(text=drink.name, id=i)
             b.bind(on_press=self.click)
             self.layout.add_widget(b)
