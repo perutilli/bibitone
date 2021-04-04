@@ -2,5 +2,6 @@
     "_comment": "ml per second",
     "pump_rate": 15,
     "bic_size": 200,
-    "shot_size": 30
+    "shot_size": 30,
+    "resolution": [1024, 600]
 }
