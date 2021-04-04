@@ -1,5 +1,9 @@
 from Liquid import *
 from Drink import *
+import kivy
+from kivy.app import App
+from kivy.uix.screenmanager import ScreenManager
+from Pages import MainPage, ShotsPage, DrinksPage
 import json
 from types import SimpleNamespace
 
@@ -30,3 +34,18 @@ with open("drinks.json") as data_file:
     #data = data_file.read()
     for drink in json.load(data_file):
         drinks.append(decode_drink(drink))
+
+
+class BibitoneApp(App):
+
+    def build(self):
+        sm = ScreenManager()
+        sm.add_widget(MainPage(name='main_page'))
+        sm.add_widget(ShotsPage(liquids, name='shots_page'))
+        sm.add_widget(DrinksPage(drinks, name='drinks_page'))
+
+        return sm
+
+
+if __name__ == '__main__':
+    BibitoneApp().run()
