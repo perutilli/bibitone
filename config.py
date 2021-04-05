@@ -28,7 +28,7 @@ drinks = []
 
 
 def decode_liquid(dict):
-    return Liquid(dict["name"], dict["position"])
+    return Liquid(dict["name"], dict["position"], dict["shot"])
 
 
 def decode_drink(dict):

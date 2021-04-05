@@ -13,7 +13,7 @@ import time
 import config
 import pumps
 
-Builder.load_file('layouts.kv')
+Builder.load_file('layout.kv')
 
 
 class ButtonWithId(Button):
@@ -23,20 +23,18 @@ class ButtonWithId(Button):
 
 
 class MainPage(Screen):
-
-    def press(self):
-        pass
+    pass
 
 
 class ShotsPage(Screen):
     def __init__(self, shots_list, **kwargs):
         super(ShotsPage, self).__init__(**kwargs)
-        self.shots = shots_list
+        self.shots = list(filter(lambda l: l.shot, shots_list))
 
         # TODO: needs to be dynamically set based on len(shots_list)
 
         self.grid = GridLayout()
-        self.grid.cols = 3
+        self.grid.cols = 2
         for i, shot in enumerate(self.shots):
             b = ButtonWithId(text=shot.name, id=i)
             b.bind(on_press=self.click)
@@ -68,10 +66,6 @@ class DrinksPage(Screen):
         self.ids.drinks_page_layout.add_widget(self.grid)
 
     def click(self, instance):
-        # pumps_thread = threading.Thread(
-        #     target=pumps.dispense_drink, args=(self.drinks[instance.id],))
-        # pumps_thread.start()
-        # pumps_thread.join()
         drink = self.drinks[instance.id]
         t = pumps.calculate_time_drink(drink)
         pumps.dispense_drink(drink)
@@ -92,10 +86,6 @@ class ProgressPage(Screen):
         self.start = time.time()  # time in seconds
         time_delta = self.time_len/self.ids.prog_bar.max
         Clock.schedule_interval(self.update_prog_bar, time_delta)
-        # pb_thread = threading.Thread(
-        #     target=self.update_prog_bar, args=())
-        # pb_thread.start()
-        # pb_thread.join()
 
     def update_prog_bar(self, dt):
         self.ids.prog_bar.value = (

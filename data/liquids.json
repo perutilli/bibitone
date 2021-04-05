@@ -1,34 +1,42 @@
 [
     {
         "name" : "vodka",
-        "position" : [1]
+        "position" : [1],
+        "shot": true
     },
     {
         "name" : "gin",
-        "position" : [2]
+        "position" : [2],
+        "shot": true
     },
     {
         "name" : "tequila",
-        "position" : [3]
+        "position" : [3],
+        "shot": true
     },
     {
         "name" : "rum",
-        "position" : [4]
+        "position" : [4],
+        "shot": true
     },
     {
         "name" : "lemon",
-        "position" : [5]
+        "position" : [5],
+        "shot": false
     },
     {
         "name" : "coca cola",
-        "position" : [6]
+        "position" : [6],
+        "shot": false
     },
     {
         "name" : "ace",
-        "position" : [7, 8]
+        "position" : [7, 8],
+        "shot": false
     },
     {
         "name" : "tea plus",
-        "position" : [9]
+        "position" : [9],
+        "shot": false
     }
 ]
