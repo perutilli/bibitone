@@ -44,10 +44,11 @@ class ShotsPage(Screen):
         self.ids.shots_page_layout.add_widget(self.grid)
 
     def click(self, instance):
-        t = pumps.calculate_time_shot(self.shots[instance.id])
-        pumps.dispense_shot(self.shots[instance.id])
+        shot = self.shots[instance.id]
+        t = pumps.calculate_time_shot(shot)
+        pumps.dispense_shot(shot)
         self.parent.current = 'progress_page'
-        self.parent.progress_page.start_prog(t, 'shots_page')
+        self.parent.progress_page.start_prog(t, 'shots_page', shot)
 
     def back(self):
         self.parent.current = 'main_page'
@@ -67,27 +68,29 @@ class DrinksPage(Screen):
         self.ids.drinks_page_layout.add_widget(self.grid)
 
     def click(self, instance):
-        pumps_thread = threading.Thread(
-            target=pumps.dispense_drink, args=(self.drinks[instance.id],))
-        pumps_thread.start()
-        pumps_thread.join()
+        # pumps_thread = threading.Thread(
+        #     target=pumps.dispense_drink, args=(self.drinks[instance.id],))
+        # pumps_thread.start()
+        # pumps_thread.join()
+        drink = self.drinks[instance.id]
+        t = pumps.calculate_time_drink(drink)
+        pumps.dispense_drink(drink)
+        self.parent.current = 'progress_page'
+        self.parent.progress_page.start_prog(t, 'drinks_page', drink)
 
     def back(self):
         self.parent.current = 'main_page'
 
 
 class ProgressPage(Screen):
-    def __init__(self, **kwargs):
-        super(ProgressPage, self).__init__(**kwargs)
-        self.max = 100
-        self.pb = ProgressBar(max=self.max)
-        self.add_widget(self.pb)
 
-    def start_prog(self, time_len, caller):
+    def start_prog(self, time_len, caller, liquid):
         self.time_len = time_len
-        self.pb.value = 0
+        self.ids.prog_bar.value = 0
         self.caller = caller
-        time_delta = self.time_len/self.max
+        self.ids.display_name.text = str(liquid)
+        self.start = time.time()  # time in seconds
+        time_delta = self.time_len/self.ids.prog_bar.max
         Clock.schedule_interval(self.update_prog_bar, time_delta)
         # pb_thread = threading.Thread(
         #     target=self.update_prog_bar, args=())
@@ -95,7 +98,8 @@ class ProgressPage(Screen):
         # pb_thread.join()
 
     def update_prog_bar(self, dt):
-        self.pb.value += 1
-        if(self.pb.value >= self.max):
+        self.ids.prog_bar.value = (
+            (time.time() - self.start) * self.ids.prog_bar.max) / (self.time_len)
+        if(self.ids.prog_bar.value >= self.ids.prog_bar.max):
             Clock.unschedule(self.update_prog_bar)
-            self.parent.current = 'shots_page'
+            self.parent.current = self.caller

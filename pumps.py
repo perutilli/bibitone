@@ -31,17 +31,12 @@ def dispense_shot(liquid):
 
 
 def dispense_drink(drink):
-    threads = []
     for liquid in drink.quantities:
         mls = drink.quantities[liquid] * config.bic_size
         # time interval
         t_int = mls/(config.pump_rate * len(liquid.position))
         for pump in liquid.position:
-            t = threading.Thread(target=open_pump, args=(pump, t_int))
-            threads.append(t)
-            t.start()
-    for t in threads:
-        t.join()
+            open_pump(pump, t_int)
 
 
 def start_pump(pump_no):
