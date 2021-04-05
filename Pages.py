@@ -5,6 +5,7 @@ from kivy.uix.button import Button
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.progressbar import ProgressBar
+from kivy.clock import Clock
 
 import threading
 import time
@@ -43,10 +44,10 @@ class ShotsPage(Screen):
         self.ids.shots_page_layout.add_widget(self.grid)
 
     def click(self, instance):
-        pumps_thread = threading.Thread(
-            target=pumps.dispense_shot, args=(self.shots[instance.id],))
-        pumps_thread.start()
-        pumps_thread.join()
+        t = pumps.calculate_time_shot(self.shots[instance.id])
+        pumps.dispense_shot(self.shots[instance.id])
+        self.parent.current = 'progress_page'
+        self.parent.progress_page.start_prog(t, 'shots_page')
 
     def back(self):
         self.parent.current = 'main_page'
@@ -75,21 +76,26 @@ class DrinksPage(Screen):
         self.parent.current = 'main_page'
 
 
-# class ProgressPage(Screen):
-#     def __init__(self):
-#         super(ProgressPage, self).__init__(**kwargs)
-#         self.pb = ProgressBar(max=1000)
-#         self.add_widget(self.pb)
+class ProgressPage(Screen):
+    def __init__(self, **kwargs):
+        super(ProgressPage, self).__init__(**kwargs)
+        self.max = 100
+        self.pb = ProgressBar(max=self.max)
+        self.add_widget(self.pb)
 
-#     def start_prog(self, time_len):
-#         self.time_len = time_len
-#         self.pb.value = 0
-#         pb_thread = threading.Thread(
-#             target=self.update_prog_bar, args=())
-#         pb_thread.start()
-#         pb_thread.join()
+    def start_prog(self, time_len, caller):
+        self.time_len = time_len
+        self.pb.value = 0
+        self.caller = caller
+        time_delta = self.time_len/self.max
+        Clock.schedule_interval(self.update_prog_bar, time_delta)
+        # pb_thread = threading.Thread(
+        #     target=self.update_prog_bar, args=())
+        # pb_thread.start()
+        # pb_thread.join()
 
-#     def update_prog_bar(self):
-#         time_delta = self.time_len/1000
-#         time.sleep(time_delta)
-#         self.pb.value += 1
+    def update_prog_bar(self, dt):
+        self.pb.value += 1
+        if(self.pb.value >= self.max):
+            Clock.unschedule(self.update_prog_bar)
+            self.parent.current = 'shots_page'

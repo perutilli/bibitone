@@ -1,6 +1,10 @@
 import time
 import threading
+from functools import partial
+
 import config
+
+from kivy.clock import Clock
 
 
 def calculate_time_drink(drink):
@@ -18,9 +22,8 @@ def calculate_time_shot(liquid):
 
 
 def open_pump(pump_no, t):
-    print("Started pump no " + str(pump_no))
-    time.sleep(t)
-    print("Stopped pump no " + str(pump_no))
+    start_pump(pump_no)
+    Clock.schedule_once(partial(stop_pump, pump_no), t)
 
 
 def dispense_shot(liquid):
@@ -39,3 +42,11 @@ def dispense_drink(drink):
             t.start()
     for t in threads:
         t.join()
+
+
+def start_pump(pump_no):
+    print("Started pump no " + str(pump_no))
+
+
+def stop_pump(pump_no, dt):
+    print("Stopped pump no " + str(pump_no))

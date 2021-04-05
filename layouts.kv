@@ -27,9 +27,14 @@
             size_hint_y: 0.14
             orientation: "horizontal"
             Button:
-                text: "back"
                 size_hint_x: 0.1
                 on_press: root.back()
+                Image:
+                    size_hint_y: None
+                    height: 30
+                    source:'images/back_arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
             Label:
                 id: shots_title
                 text: "SHOTS"
@@ -46,9 +51,14 @@
             size_hint_y: 0.14
             orientation: "horizontal"
             Button:
-                text: "back"
                 size_hint_x: 0.1
                 on_press: root.back()
+                Image:
+                    size_hint_y: None
+                    height: 30
+                    source:'images/back_arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
             Label:
                 id: drinks_title
                 text: "DRINKS"
