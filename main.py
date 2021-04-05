@@ -1,44 +1,14 @@
 # my classes
-from lib.Liquid import *
-from lib.Drink import *
 from Pages import MainPage, ShotsPage, DrinksPage, ProgressPage
+import config
 # kivy imports
 import kivy
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
-# python lib
-import json
 
-liquids_file = "data/liquids.json"
-drinks_file = "data/drinks.json"
-
-liquids = []
-drinks = []
-
-
-def decode_liquid(dict):
-    return Liquid(dict["name"], dict["position"])
-
-
-def decode_drink(dict):
-    quantities = {}
-    for liq in dict["liquids"]:
-        liq_name = liq["name"]
-        for l in liquids:
-            if (l.name == liq_name):
-                quantities[l] = liq["portion"]
-                break
-    return Drink(dict["name"], quantities)
-
-
-with open(liquids_file) as data_file:
-    data = data_file.read()
-    liquids = json.loads(data, object_hook=decode_liquid)
-
-with open(drinks_file) as data_file:
-    for drink in json.load(data_file):
-        drinks.append(decode_drink(drink))
+liquids = config.liquids
+drinks = config.drinks
 
 
 class PageManager(ScreenManager):
