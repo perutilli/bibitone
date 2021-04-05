@@ -1,6 +1,6 @@
 # my classes
-from Liquid import *
-from Drink import *
+from lib.Liquid import *
+from lib.Drink import *
 from Pages import MainPage, ShotsPage, DrinksPage, ProgressPage
 # kivy imports
 import kivy
