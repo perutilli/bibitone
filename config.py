@@ -53,8 +53,8 @@ with open(drinks_file) as data_file:
 
 # 0 being off 1 being on as in true / false
 # you can use 0 or 1 && True or False
-Config.set('graphics', 'resizable', False)
-Config.set('graphics', 'borderless', True)
+# Config.set('graphics', 'resizable', False)
+# Config.set('graphics', 'borderless', True)
 
 # fix the width of the window
 Config.set('graphics', 'width', resolution[0])
