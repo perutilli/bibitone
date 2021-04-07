@@ -3,5 +3,5 @@
     "pump_rate": 15,
     "bic_size": 200,
     "shot_size": 30,
-    "resolution": [1024, 600]
+    "resolution": [612, 300]
 }
