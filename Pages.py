@@ -2,6 +2,7 @@ import kivy
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from kivy.uix.progressbar import ProgressBar
@@ -17,9 +18,22 @@ Builder.load_file('layout.kv')
 
 
 class ButtonWithId(Button):
-    def __init__(self, id=-1, **kwargs):
+    def __init__(self, id=-1, img_source="", **kwargs):
         super(ButtonWithId, self).__init__(**kwargs)
         self.id = id
+        if(img_source != ""):
+            self.image = Image(
+                source=img_source,
+                pos_hint=(None, None)
+            )
+            print(self.center)
+            self.image.size_hint = (0.7, 0.7)
+            self.image.center = self.center
+            self.add_widget(self.image)
+
+    # WARNING: use only after putting the all widget in the layout
+    def add_image(self):
+        pass
 
 
 class MainPage(Screen):
@@ -59,10 +73,13 @@ class DrinksPage(Screen):
 
         self.grid = GridLayout()
         self.grid.cols = 3
+        self.buttons = []
         for i, drink in enumerate(self.drinks):
-            b = ButtonWithId(text=drink.name, id=i)
-            b.bind(on_press=self.click)
+            b = ButtonWithId(text=drink.name, id=i,
+                             img_source=drink.img_source)
+            b.bind(on_press=self.click, center=self.bind_images)
             self.grid.add_widget(b)
+            self.buttons.append(b)
         self.ids.drinks_page_layout.add_widget(self.grid)
 
     def click(self, instance):
@@ -74,6 +91,11 @@ class DrinksPage(Screen):
 
     def back(self):
         self.parent.current = 'main_page'
+
+    def bind_images(self, instance, value):
+        instance.image.size_hint = (None, None)
+        instance.image.size = (0.9*instance.width, 0.9*instance.height)
+        instance.image.center = value
 
 
 class ProgressPage(Screen):
