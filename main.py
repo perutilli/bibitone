@@ -32,7 +32,7 @@ class BibitoneApp(App):
         sp = ShotsPage(liquids, name='shots_page')
         dp = DrinksPage(drinks, name='drinks_page')
         pp = ProgressPage(name='progress_page')
-        pm = PageManager(mp, sp, dp, pp)
+        pm = PageManager(dp, sp, mp, pp)
 
         return pm
 
