@@ -24,16 +24,8 @@ class ButtonWithId(Button):
         if(img_source != ""):
             self.image = Image(
                 source=img_source,
-                pos_hint=(None, None)
             )
-            print(self.center)
-            self.image.size_hint = (0.7, 0.7)
-            self.image.center = self.center
             self.add_widget(self.image)
-
-    # WARNING: use only after putting the all widget in the layout
-    def add_image(self):
-        pass
 
 
 class MainPage(Screen):

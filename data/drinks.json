@@ -34,5 +34,20 @@
             }
         ],
         "img_source" : "images/drinks/long_island.png"
+    },
+    {
+        "name" : "Coca Rum",
+        "liquids" : [],
+        "img_source" : "images/drinks/coca_rum.png"
+    },
+    {
+        "name" : "Estarum",
+        "liquids" : [],
+        "img_source" : "images/drinks/estarum.png"
+    },
+    {
+        "name" : "Gin Lemon",
+        "liquids" : [],
+        "img_source" : "images/drinks/gin_lemon.png"
     }
 ]
