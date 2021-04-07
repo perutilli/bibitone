@@ -10,7 +10,8 @@
                 "name" : "ace",
                 "portion" : 0.7
             }
-        ]
+        ],
+        "img_source" : "images/drinks/bibitone.png"
     },
     {
         "name" : "Long Island",
@@ -31,6 +32,7 @@
                 "name" : "lemon",
                 "portion" : 0.4
             }
-        ]
+        ],
+        "img_source" : "images/drinks/long_island.png"
     }
 ]
