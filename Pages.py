@@ -94,7 +94,7 @@ class ProgressPage(Screen):
 
     def start_prog(self, time_len, caller, liquid):
         self.time_len = time_len
-        self.max = 101
+        self.max = 125
         # self.ids.prog_bar.value = 0
         self.caller = caller
         # self.ids.display_name.text = str(liquid)
@@ -105,7 +105,7 @@ class ProgressPage(Screen):
     def update_prog_bar(self, dt):
         frame_num = int(
             ((time.time() - self.start) * self.max) / (self.time_len)) + 1
-        self.ids.prog_bar.source = f"atlas://images/prog_bar_atlas/ezgif-frame-{frame_num:03}"
+        self.ids.prog_bar.source = f"atlas://images/prog_bar_atlas/progress_bar {frame_num:03}"
         if(frame_num >= self.max):
             Clock.unschedule(self.update_prog_bar)
             self.parent.current = self.caller
