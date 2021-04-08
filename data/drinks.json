@@ -11,7 +11,7 @@
                 "portion" : 0.7
             }
         ],
-        "img_source" : "images/drinks/bibitone.png"
+        "img_source" : "atlas://images/drinks_atlas/bibitone"
     },
     {
         "name" : "Long Island",
@@ -33,21 +33,21 @@
                 "portion" : 0.4
             }
         ],
-        "img_source" : "images/drinks/long_island.png"
+        "img_source" : "atlas://images/drinks_atlas/long_island"
     },
     {
         "name" : "Coca Rum",
         "liquids" : [],
-        "img_source" : "images/drinks/coca_rum.png"
+        "img_source" : "atlas://images/drinks_atlas/coca_rum"
     },
     {
         "name" : "Estarum",
         "liquids" : [],
-        "img_source" : "images/drinks/estarum.png"
+        "img_source" : "atlas://images/drinks_atlas/estarum"
     },
     {
         "name" : "Gin Lemon",
         "liquids" : [],
-        "img_source" : "images/drinks/gin_lemon.png"
+        "img_source" : "atlas://images/drinks_atlas/gin_lemon"
     }
 ]
