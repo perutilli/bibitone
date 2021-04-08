@@ -71,10 +71,10 @@
     BoxLayout:
         orientation:'vertical'
         padding: 50
-        Label:
-            id:display_name
-        ProgressBar:
-            id: prog_bar
-            max: 100
-            value: 0
+        Image:
+            id:prog_bar
+            size_hint:(1, 1)
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+
             
