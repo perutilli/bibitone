@@ -95,9 +95,7 @@ class ProgressPage(Screen):
     def start_prog(self, time_len, caller, liquid):
         self.time_len = time_len
         self.max = 125
-        # self.ids.prog_bar.value = 0
         self.caller = caller
-        # self.ids.display_name.text = str(liquid)
         self.start = time.time()  # time in seconds
         time_delta = self.time_len/self.max
         Clock.schedule_interval(self.update_prog_bar, time_delta)

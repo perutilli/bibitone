@@ -4,6 +4,9 @@ from lib.Drink import *
 from kivy.config import Config
 
 import json
+import os
+
+os.environ['KIVY_WINDOW'] = 'egl_rpi'
 
 config_file = "data/config.json"
 
