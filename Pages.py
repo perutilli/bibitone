@@ -5,10 +5,8 @@ from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
-from kivy.uix.progressbar import ProgressBar
 from kivy.clock import Clock
 
-import threading
 import time
 
 import config
@@ -94,16 +92,16 @@ class ProgressPage(Screen):
 
     def start_prog(self, time_len, caller, liquid):
         self.time_len = time_len
-        self.max = 125
+        self.max = 9
         self.caller = caller
         self.start = time.time()  # time in seconds
-        time_delta = self.time_len/self.max
+        time_delta = self.time_len/(20*self.max)
         Clock.schedule_interval(self.update_prog_bar, time_delta)
 
     def update_prog_bar(self, dt):
         frame_num = int(
-            ((time.time() - self.start) * self.max) / (self.time_len)) + 1
-        self.ids.prog_bar.source = f"atlas://images/prog_bar_atlas/progress_bar {frame_num:03}"
+            ((time.time() - self.start) * self.max) / (self.time_len))
+        self.ids.prog_bar.source = f"{config.progress_bar_prefix}{(frame_num%3 + 1):03}"
         if(frame_num >= self.max):
             Clock.unschedule(self.update_prog_bar)
             self.parent.current = self.caller

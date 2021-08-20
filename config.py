@@ -11,6 +11,9 @@ pump_rate = 0
 bic_size = 0
 shot_size = 0
 resolution = (0, 0)
+progress_bar_prefix = ""
+frames_num = 0
+
 
 with open(config_file) as data_file:
     data = json.load(data_file)
@@ -18,6 +21,8 @@ with open(config_file) as data_file:
     bic_size = data["bic_size"]
     shot_size = data["shot_size"]
     resolution = (data["resolution"][0], data["resolution"][1])
+    progress_bar_prefix = data["progress_bar_prefix"]
+    frames_num = data["frames_num"]
 
 
 liquids_file = "data/liquids.json"

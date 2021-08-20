@@ -3,5 +3,7 @@
     "pump_rate": 15,
     "bic_size": 200,
     "shot_size": 30,
-    "resolution": [1024, 600]
+    "resolution": [1024, 600],
+    "progress_bar_prefix": "atlas://images/progress_bar_atlas/progress_bar_",
+    "frames_num": 3
 }
