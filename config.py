@@ -33,7 +33,7 @@ drinks = []
 
 
 def decode_liquid(dict):
-    return Liquid(dict["name"], dict["position"], dict["shot"])
+    return Liquid(name=dict["name"], position=dict["position"], shot=dict["shot"])
 
 
 def decode_drink(dict):
@@ -44,7 +44,7 @@ def decode_drink(dict):
             if (l.name == liq_name):
                 quantities[l] = liq["portion"]
                 break
-    return Drink(dict["name"], quantities, dict["img_source"])
+    return Drink(name=dict["name"], quantities=quantities, img_source=dict["img_source"])
 
 
 with open(liquids_file) as data_file:

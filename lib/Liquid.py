@@ -1,14 +1,12 @@
+from dataclasses import dataclass
+
+
+@dataclass
 class Liquid:
 
-    # attributes
-    # name -> string
-    # position -> list
-    # shot -> boolean (is shottable)
-
-    def __init__(self, name, position, shot):
-        self.name = name
-        self.position = position
-        self.shot = shot
+    name: str
+    position: list(int)
+    shot: bool  # is shottable
 
     def __str__(self):
         return self.name

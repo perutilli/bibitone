@@ -1,14 +1,13 @@
+from dataclasses import dataclass
+import Liquid
+
+
+@dataclass
 class Drink:
 
-    # attributes
-    # name
-    # dict(?) liquid, qt
-    # img source -> string
-
-    def __init__(self, name, quantities, img_source):
-        self.name = name
-        self.quantities = quantities
-        self.img_source = img_source
+    name: str
+    quantities: Liquid
+    img_source: str
 
     def __str__(self):
         return self.name
